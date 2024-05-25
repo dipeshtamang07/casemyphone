@@ -11,11 +11,14 @@ import { authRoutes } from "@/routes";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { signOut } from "next-auth/react";
+import { useCurrentSession } from "@/hooks/use-current-session";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const user = useCurrentUser();
+  // const user = useCurrentUser();
+  const session = useCurrentSession();
+  const user = session?.user;
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
