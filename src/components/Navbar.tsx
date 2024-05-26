@@ -12,6 +12,7 @@ import { useCurrentUser } from "@/hooks/use-current-user";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { signOut } from "next-auth/react";
 import { useCurrentSession } from "@/hooks/use-current-session";
+import { ModeToggle } from "./mode-toggle";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,7 @@ function Navbar() {
   const pathname = usePathname();
 
   return (
-    <MaxWidthWrapper className="py-4 z-[100] backdrop-blur-sm border-b border-gray-200 sticky inset-x-0 top-0">
+    <MaxWidthWrapper className="py-4 z-[100] backdrop-blur-sm border-b border sticky inset-x-0 top-0">
       <nav className="flex justify-between">
         <Link href="/" className="italic font-bold text-lg">
           _case<span className="text-blue-600">my</span>
@@ -80,6 +81,9 @@ function Navbar() {
                 </Link>
               </li>
             )}
+            <li>
+              <ModeToggle />
+            </li>
             <li>
               <Link
                 href="/configure/upload"

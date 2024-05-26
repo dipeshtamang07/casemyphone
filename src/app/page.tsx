@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-slate-50">
+    <div>
       <section>
         {/* <MaxWidthWrapper className="pb-24 pt-5 lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pt-24 xl:pt-32 lg:pb-52"> */}
         <MaxWidthWrapper className="lg:grid grid-cols-3 lg:pb-20">
@@ -15,9 +15,9 @@ export default function Home() {
           {/* Grid Left */}
           <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
             <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
-              <h1 className="relative w-fit tracking-tight text-balance mt-10 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="relative w-fit tracking-tight text-balance mt-10 font-bold !leading-tight text-5xl md:text-6xl lg:text-7xl">
                 Apply any Image on a{" "}
-                <span className="text-red-600 px-2">Custom</span>{" "}
+                <span className="text-primary px-2">Custom</span>{" "}
                 Phone Case
               </h1>
               <p className="mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap">
@@ -96,7 +96,7 @@ export default function Home() {
             <div className="relative md:max-w-xl">
               <img
                 src="/your-image.png"
-                className="absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block"
+                className="absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block dark:invert"
               />
               <img
                 src="/line.png"
@@ -110,10 +110,10 @@ export default function Home() {
       </section>
 
       {/* Value proposition */}
-      <section className="bg-slate-100 grainy-dark py-24">
+      <section className="bg-slate-100 dark:bg-slate-900 grainy-dark py-24">
         <MaxWidthWrapper className="flex flex-col items-center gap-16 sm:gap-32">
           <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6">
-            <h2 className="order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900">
+            <h2 className="order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl">
               What our{" "}
               <span className="relative px-2">
                 customers{" "}
@@ -203,9 +203,9 @@ export default function Home() {
         <MaxWidthWrapper className="py-24">
           <div className="mb-12 px-6 lg:px-8">
             <div className="mx-auto max-w-2xl sm:text-center">
-              <h2 className="order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900">
+              <h2 className="order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl">
                 Upload your photo and get{" "}
-                <span className="relative px-2 text-red-600">
+                <span className="relative px-2 text-primary">
                   your own case
                 </span>{" "}
                 now
@@ -217,7 +217,7 @@ export default function Home() {
             <div className="relative flex flex-col items-center md:grid grid-cols-2 gap-40">
               <img
                 src="/arrow.png"
-                className="absolute top-[25rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0"
+                className="absolute top-[25rem] md:top-1/2 -translate-y-1/2 z-10 left-1/2 -translate-x-1/2 rotate-90 md:rotate-0 dark:invert"
               />
 
               <div className="relative h-80 md:h-full w-full md:justify-self-end max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 lg:rounded-2xl">

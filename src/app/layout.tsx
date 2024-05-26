@@ -7,6 +7,7 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
+import { ThemeProvider } from "@/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,16 +26,23 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SessionProvider session={session}>
-          <Navbar />
-          <main className="flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]">
-            <div className="flex-1 flex flex-col h-full">
-              <Providers>{children}</Providers>
-            </div>
-            <Footer />
-          </main>
-        </SessionProvider>
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SessionProvider session={session}>
+            <Navbar />
+            <main className="flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]">
+              <div className="flex-1 flex flex-col h-full">
+                <Providers>{children}</Providers>
+              </div>
+              <Footer />
+            </main>
+          </SessionProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );

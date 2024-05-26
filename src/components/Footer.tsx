@@ -3,9 +3,9 @@ import MaxWidthWrapper from './MaxWidthWrapper'
 
 const Footer = () => {
   return (
-    <footer className='bg-white h-20 relative'>
+    <footer className='h-20 relative'>
       <MaxWidthWrapper>
-        <div className='border-t border-gray-200 pt-2' />
+        <div className='border-t pt-2' />
 
         <div className='h-full flex flex-col md:flex-row md:justify-between justify-center items-center'>
           <div className='text-center md:text-left pb-2 md:pb-0'>
@@ -18,17 +18,17 @@ const Footer = () => {
             <div className='flex space-x-8'>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600 dark:hover:text-white'>
                 Terms
               </Link>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600 dark:hover:text-white'>
                 Privacy Policy
               </Link>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600 dark:hover:text-white'>
                 Cookie Policy
               </Link>
             </div>

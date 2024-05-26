@@ -126,7 +126,7 @@ const LoginForm = () => {
         </Form>
       </CardContent>
       <CardFooter>
-        <Button variant="link" className="font-normal mx-auto">
+        <Button variant="link" className="font-normal mx-auto text-gray-600">
           <Link href="/auth/login">Don't have an account?</Link>
         </Button>
       </CardFooter>

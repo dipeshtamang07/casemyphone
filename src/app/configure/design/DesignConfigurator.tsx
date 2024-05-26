@@ -161,7 +161,7 @@ const DesignConfigurator = ({
         ref={containerRef}
         className="relative h-[37.5rem] overflow-hidden col-span-2 
       w-full max-w-4xl flex items-center justify-center rounded-lg border-2 
-      border-dashed border-gray-300 p-12 text-center
+      border-dashed border-gray-300  dark:border-slate-500 p-12 text-center
       focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
       >
         <div className="relative w-60 bg-opacity-50 pointer-events-none aspect-[896/1831]">
@@ -177,7 +177,7 @@ const DesignConfigurator = ({
               className="pointer-events-none z-50 select-none"
             />
           </AspectRatio>
-          <div className="absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)]" />
+          <div className="absolute z-40 inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px] shadow-[0_0_0_99999px_rgba(229,231,235,0.6)] dark:shadow-[0_0_0_99999px_rgba(229,231,235,0.1)]" />
           <div
             className={cn(
               "absolute inset-0 left-[3px] top-px right-[3px] bottom-px rounded-[32px]",
@@ -227,12 +227,12 @@ const DesignConfigurator = ({
       </div>
 
       {/* Right Side */}
-      <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col bg-white">
+      <div className="h-[37.5rem] w-full col-span-full lg:col-span-1 flex flex-col">
         <ScrollArea className="relative flex-1 overflow-auto">
           {/* Gradient */}
           <div
             aria-hidden="true"
-            className="absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white pointer-events-none"
+            className="absolute z-10 inset-x-0 bottom-0 h-12 bg-gradient-to-t dark:from-background pointer-events-none"
           />
 
           <div className="px-8 pb-12 pt-8">
@@ -351,9 +351,9 @@ const DesignConfigurator = ({
                             value={option}
                             className={({ active, checked }) =>
                               cn(
-                                "relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
+                                "relative block cursor-pointer rounded-lg px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between",
                                 {
-                                  "border-primary": active || checked,
+                                  "border-green-500": active || checked,
                                 }
                               )
                             }
@@ -361,7 +361,7 @@ const DesignConfigurator = ({
                             <span className="flex items-center">
                               <span className="flex flex-col text-sm">
                                 <RadioGroup.Label
-                                  className="font-medium text-gray-900"
+                                  className="font-medium"
                                   as="span"
                                 >
                                   {option.label}
@@ -384,7 +384,7 @@ const DesignConfigurator = ({
                               as="span"
                               className="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
                             >
-                              <span className="font-medium text-gray-900">
+                              <span className="font-medium text-gray-900 dark:text-white">
                                 {formatPrice(option.price / 100)}
                               </span>
                             </RadioGroup.Description>
@@ -402,7 +402,7 @@ const DesignConfigurator = ({
         </ScrollArea>
 
         {/* Final Price */}
-        <div className="w-full px-8 h-16 bg-white">
+        <div className="w-full px-8 h-16">
           <div className="h-px w-full bg-zinc-200" /> {/* Separator */}
           <div className="w-full h-full flex justify-end items-center">
             <div className="w-full flex gap-6 items-center">

@@ -21,6 +21,7 @@ const Phone = ({ imgSrc, dark, className, ...props }: PhoneProps) => {
             ? "/phone-template-dark-edges.png"
             : "/phone-template-white-edges.png"
         }
+        className="dark:invert"
         alt="phone-image"
       />
       <div className="absolute -z-10 inset-0">
