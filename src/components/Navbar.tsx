@@ -100,10 +100,10 @@ function Navbar() {
           <div className="relative block lg:hidden">
             {/* Hamburger button */}
             <button
-              onClick={toggleMenu}
+              onClick={() => toggleMenu()}
               className="text-zinc-950 focus:outline-none"
             >
-              {isOpen ? (
+              {!isOpen ? (
                 <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                   <path
                     fillRule="evenodd"
@@ -126,7 +126,7 @@ function Navbar() {
               className={cn(
                 `absolute flex flex-col right-6 border border-gray-300 px-2 rounded-sm bg-white`,
                 {
-                  hidden: isOpen,
+                  hidden: !isOpen,
                 }
               )}
             >

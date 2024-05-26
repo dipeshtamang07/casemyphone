@@ -51,7 +51,15 @@ const LoginForm = () => {
           if (res.success) {
             setSuccessMessage(res.message);
             setErrorMessage("");
-            router.replace("/");
+
+            // If the user had a configuration saved before loggin in
+            // redirect to that configuration page
+            const configurationId = localStorage.getItem("configurationId");
+            if (configurationId) {
+              router.push(`/configure/preview?id=${configurationId}`);
+            } else {
+              router.replace("/");
+            }
           } else {
             setErrorMessage(res.message);
             setSuccessMessage("");
@@ -62,7 +70,6 @@ const LoginForm = () => {
         });
     });
   };
-
 
   return (
     <Card className="w-[400px]">

@@ -13,8 +13,8 @@ import Confetti from "react-dom-confetti";
 import { createCheckoutSession } from "./actions";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import LoginModal from "@/components/LoginModal";
+import { useCurrentSession } from "@/hooks/use-current-session";
 
 const confettiConfig = {
   angle: 90,
@@ -34,12 +34,16 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   const { toast } = useToast();
   const router = useRouter();
 
-  const user = useCurrentUser();
+  const session = useCurrentSession();
+  const user = session?.user;
 
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
-  useEffect(() => setShowConfetti(true));
+  useEffect(() => {
+    setShowConfetti(true);
+    localStorage.removeItem("configurationId");
+  }, []);
 
   const { color, model, finish, material } = configuration;
 
@@ -56,30 +60,30 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     totalPrice += PRODUCT_PRICES.material.polycarbonate;
   if (finish === "textured") totalPrice += PRODUCT_PRICES.finish.textured;
 
-    const { mutate: createPaymentSession } = useMutation({
-      mutationKey: ["get-checkout-session"],
-      mutationFn: createCheckoutSession,
-      onSuccess: ({ url }) => {
-        if (url) router.push(url);
-        else throw new Error("Unable to retrieve payment URL.");
-      },
-      onError: () => {
-        toast({
-          title: "Something went wrong",
-          description: "There was an error on our end. Please try again.",
-          variant: "destructive",
-        });
-      },
-    });
+  const { mutate: createPaymentSession } = useMutation({
+    mutationKey: ["get-checkout-session"],
+    mutationFn: createCheckoutSession,
+    onSuccess: ({ url }) => {
+      if (url) router.push(url);
+      else throw new Error("Unable to retrieve payment URL.");
+    },
+    onError: () => {
+      toast({
+        title: "Something went wrong",
+        description: "There was an error on our end. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
 
-    function handleCheckout() {
-      if (user) {
-        createPaymentSession({ configId: configuration.id });
-      } else {
-        localStorage.setItem("configurationId", configuration.id);
-        setIsLoginModalOpen(true);
-      }
+  function handleCheckout() {
+    if (user) {
+      createPaymentSession({ configId: configuration.id });
+    } else {
+      localStorage.setItem("configurationId", configuration.id);
+      setIsLoginModalOpen(true);
     }
+  }
 
   return (
     <>
