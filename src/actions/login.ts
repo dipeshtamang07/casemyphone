@@ -7,6 +7,7 @@ import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 import { z } from "zod";
 import { generateVerificationToken } from "./verification-token";
+import { sendVerificationEmail } from "@/lib/email";
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
   try {
@@ -26,6 +27,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       const verificationToken = await generateVerificationToken(user.email);
 
       // TODO: SEND EMAIL
+      await sendVerificationEmail(email, verificationToken.token);
 
       return {
         success: true,
@@ -40,7 +42,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     try {
       await signIn("credentials", {
         email,
-        password
+        password,
       });
     } catch (error) {
       if (error instanceof AuthError) {

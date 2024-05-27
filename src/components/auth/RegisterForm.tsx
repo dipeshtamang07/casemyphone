@@ -132,7 +132,7 @@ const RegisterForm = () => {
         </Form>
       </CardContent>
       <CardFooter>
-        <Button variant="link" className="font-normal mx-auto">
+        <Button variant="link" className="font-normal mx-auto text-gray-600">
           <Link href="/auth/login">Already have an account?</Link>
         </Button>
       </CardFooter>
