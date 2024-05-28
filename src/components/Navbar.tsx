@@ -8,7 +8,6 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { authRoutes } from "@/routes";
-import { useCurrentUser } from "@/hooks/use-current-user";
 import { ExitIcon } from "@radix-ui/react-icons";
 import { signOut } from "next-auth/react";
 import { useCurrentSession } from "@/hooks/use-current-session";
@@ -17,7 +16,6 @@ import { ModeToggle } from "./mode-toggle";
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // const user = useCurrentUser();
   const session = useCurrentSession();
   const user = session?.user;
 
@@ -102,11 +100,9 @@ function Navbar() {
         {/* Menu for Mobile */}
         {!authRoutes.includes(pathname) && (
           <div className="relative block lg:hidden">
+              <ModeToggle />
             {/* Hamburger button */}
-            <button
-              onClick={() => toggleMenu()}
-              className="text-zinc-950 focus:outline-none"
-            >
+            <button onClick={() => toggleMenu()} className="ml-2 focus:outline-none">
               {!isOpen ? (
                 <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
                   <path
@@ -128,7 +124,7 @@ function Navbar() {
 
             <ul
               className={cn(
-                `absolute flex flex-col right-6 border border-gray-300 px-2 rounded-sm bg-white`,
+                `absolute flex flex-col right-6 border px-2 rounded-sm bg-background`,
                 {
                   hidden: !isOpen,
                 }
@@ -136,23 +132,25 @@ function Navbar() {
             >
               {!user ? (
                 <>
-                  <li className="border-b border-gray-200 px-4 py-2">
+                  <li className="border-b px-4 py-2">
                     <Link
                       href="/auth/register"
                       className={buttonVariants({
                         size: "sm",
                         variant: "ghost",
+                        className: "w-full"
                       })}
                     >
                       Sign Up
                     </Link>
                   </li>
-                  <li className="border-b border-gray-200 px-4 py-2">
+                  <li className="border-b px-4 py-2">
                     <Link
                       href="/auth/login"
                       className={buttonVariants({
                         size: "sm",
                         variant: "ghost",
+                        className: "w-full"
                       })}
                     >
                       Login
@@ -160,10 +158,10 @@ function Navbar() {
                   </li>
                 </>
               ) : (
-                <li className="border-b border-gray-200 px-4 py-2">
+                <li className="border-b px-4 py-2">
                   <Button
                     variant="ghost"
-                    className="flex gap-2 items-center"
+                    className="flex gap-2 items-center w-full"
                     onClick={() => signOut()}
                   >
                     <ExitIcon />
@@ -172,10 +170,10 @@ function Navbar() {
                 </li>
               )}
               {isAdmin && (
-                <li className="border-b border-gray-200 px-4 py-2">
+                <li className="border-b px-4 py-2">
                   <Link
                     href="/dashboard"
-                    className={buttonVariants({ size: "sm", variant: "ghost" })}
+                    className={buttonVariants({ size: "sm", variant: "ghost", className: "w-full" })}
                   >
                     Dashboard
                   </Link>
